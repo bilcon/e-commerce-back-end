@@ -8,6 +8,7 @@ router.get("/", (req, res) => {
   // find all categories
   // be sure to include its associated Products
   Category.findAll({
+    attributes: ["id", "category_name"],
     include: [
       {
         model: Product,
@@ -40,7 +41,7 @@ router.get("/:id", (req, res) => {
       if (!dbCategoryData) {
         res
           .status(404)
-          .json({ message: "There was no category found with this id" });
+          .json({ message: "There was no category located with this id" });
         return;
       }
       res.json(dbCategoryData);
@@ -73,7 +74,7 @@ router.put("/:id", (req, res) => {
     if (!dbCategoryData) {
       res
         .status(404)
-        .json({ message: "There was no category found with this id" });
+        .json({ message: "There was no category located with this id" });
       return;
     }
     res.json(dbCategoryData);
@@ -89,7 +90,9 @@ router.delete("/:id", (req, res) => {
   })
     .then((dbCategoryData) => {
       if (!dbCategoryData) {
-        res.status(404).json({ message: "There was no category with this id" });
+        res
+          .status(404)
+          .json({ message: "There was no category located with this id" });
         return;
       }
       res.json(dbCategoryData);
