@@ -129,7 +129,7 @@ router.delete("/:id", async (req, res) => {
       },
     });
 
-    if (!libraryCardData) {
+    if (!newProduct) {
       res
         .status(404)
         .json({ message: "There was no product located with this id" });
